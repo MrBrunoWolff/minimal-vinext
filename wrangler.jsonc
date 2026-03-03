@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "minimal-vinext",
+  "compatibility_date": "2026-02-12",
+  "compatibility_flags": ["nodejs_compat"],
+  // For image optimization, swap this for a custom worker/index.ts
+  // See: https://github.com/cloudflare/vinext/blob/main/examples/app-router-cloudflare/worker/index.ts
+  "main": "vinext/server/app-router-entry",
+  "assets": {
+    "not_found_handling": "none",
+  },
+}

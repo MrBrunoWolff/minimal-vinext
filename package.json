@@ -1,0 +1,56 @@
+{
+  "name": "minimal-vinext",
+  "version": "1.0.0",
+  "description": "Minimal vinext starter kit with App Router and Cloudflare Workers",
+  "keywords": [
+    "cloudflare",
+    "cloudflare-workers",
+    "minimal",
+    "next",
+    "nextjs",
+    "react",
+    "starter",
+    "template",
+    "typescript",
+    "vinext",
+    "vite"
+  ],
+  "license": "MIT",
+  "author": "Bruno Wolff",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrBrunoWolff/minimal-vinext.git"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "start": "vinext start",
+    "deploy": "vinext deploy",
+    "doctor": "bunx react-doctor -y --no-ami .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt --write .",
+    "fmt:check": "oxfmt --check .",
+    "check": "oxlint && oxfmt --check .",
+    "clean": "rm -rf node_modules/.vite .wrangler dist"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vinext": "latest"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "latest",
+    "@cloudflare/workers-types": "latest",
+    "@vitejs/plugin-rsc": "latest",
+    "oxfmt": "latest",
+    "oxlint": "latest",
+    "react-doctor": "^0.0.29",
+    "vite": "^7.0.0",
+    "wrangler": "latest"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
