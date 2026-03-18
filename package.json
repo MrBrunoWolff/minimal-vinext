@@ -46,8 +46,8 @@
     "@vitejs/plugin-rsc": "latest",
     "oxfmt": "latest",
     "oxlint": "latest",
-    "react-doctor": "^0.0.29",
-    "vite": "^7.0.0",
+    "react-doctor": "latest",
+    "vite": "latest",
     "wrangler": "latest"
   },
   "engines": {
