@@ -47,7 +47,7 @@
     "oxfmt": "latest",
     "oxlint": "latest",
     "react-doctor": "latest",
-    "vite": "latest",
+    "vite": "8.0.1",
     "wrangler": "latest"
   },
   "engines": {
