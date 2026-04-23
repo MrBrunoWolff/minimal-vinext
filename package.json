@@ -36,19 +36,19 @@
     "clean": "rm -rf node_modules/.vite .wrangler dist"
   },
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "vinext": "latest"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "vinext": "0.0.43"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "latest",
-    "@cloudflare/workers-types": "latest",
-    "@vitejs/plugin-rsc": "latest",
-    "oxfmt": "latest",
-    "oxlint": "latest",
-    "react-doctor": "latest",
-    "vite": "8.0.1",
-    "wrangler": "latest"
+    "@cloudflare/vite-plugin": "1.33.1",
+    "@cloudflare/workers-types": "4.20260423.1",
+    "@vitejs/plugin-rsc": "0.5.24",
+    "oxfmt": "0.46.0",
+    "oxlint": "1.61.0",
+    "react-doctor": "0.0.39",
+    "vite": "8.0.10",
+    "wrangler": "4.84.1"
   },
   "engines": {
     "bun": ">=1.0.0"
