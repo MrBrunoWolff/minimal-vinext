@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "$schema": "https://unpkg.com/knip@6/schema.json",
   "entry": [
     "app/**/page.{ts,tsx,js,jsx}",
     "app/**/layout.{ts,tsx,js,jsx}",
@@ -8,7 +8,6 @@
     "app/**/not-found.{ts,tsx,js,jsx}",
     "app/**/template.{ts,tsx,js,jsx}",
     "app/**/default.{ts,tsx,js,jsx}",
-    "app/**/route.{ts,tsx,js,jsx}",
-    "vite.config.ts"
+    "app/**/route.{ts,tsx,js,jsx}"
   ]
 }
