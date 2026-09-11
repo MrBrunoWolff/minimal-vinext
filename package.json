@@ -61,8 +61,12 @@
     "vite": "8.2.1",
     "wrangler": "4.123.0"
   },
+  "overrides": {
+    "sharp": "0.35.4"
+  },
   "engines": {
     "bun": ">=1.0.0"
   },
-  "packageManager": "bun@1.4.0"
+  "packageManager": "bun@1.4.0",
+  "//overrides": "sharp: miniflare exact-pins sharp@0.35.2, which the libheif CVEs in GHSA-rgj7-g3m4-5g8c hit (<0.35.4). miniflare 5.20260910.0-alpha+ pins 0.35.4, but it is younger than bunfig's 3-day minimumReleaseAge, so it is not installable yet. Drop this once wrangler/@cloudflare/vite-plugin pull miniflare >= 5.20260910.0-alpha themselves."
 }
