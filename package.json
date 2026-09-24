@@ -41,32 +41,28 @@
     "audit": "bun audit --audit-level=high"
   },
   "dependencies": {
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-server-dom-webpack": "^19.2.8",
-    "vinext": "1.0.0-beta.6"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-server-dom-webpack": "^19.3.0",
+    "vinext": "1.0.0-beta.10"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.52.1",
-    "@cloudflare/workers-types": "5.20260817.1",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "@vitejs/plugin-rsc": "0.5.34",
-    "knip": "^6.32.2",
-    "next": "^16.3.1",
-    "oxfmt": "0.63.0",
-    "oxlint": "1.78.0",
-    "react-doctor": "0.9.12",
+    "@cloudflare/vite-plugin": "1.56.0",
+    "@cloudflare/workers-types": "5.20260921.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-rsc": "0.5.35",
+    "knip": "^6.37.0",
+    "next": "^16.3.5",
+    "oxfmt": "0.70.0",
+    "oxlint": "1.85.0",
+    "react-doctor": "0.9.14",
     "typescript": "^7.0.2",
-    "vite": "8.2.1",
-    "wrangler": "4.123.0"
-  },
-  "overrides": {
-    "sharp": "0.35.4"
+    "vite": "8.3.0",
+    "wrangler": "4.135.0"
   },
   "engines": {
     "bun": ">=1.0.0"
   },
-  "packageManager": "bun@1.4.0",
-  "//overrides": "sharp: miniflare exact-pins sharp@0.35.2, which the libheif CVEs in GHSA-rgj7-g3m4-5g8c hit (<0.35.4). miniflare 5.20260910.0-alpha+ pins 0.35.4, but it is younger than bunfig's 3-day minimumReleaseAge, so it is not installable yet. Drop this once wrangler/@cloudflare/vite-plugin pull miniflare >= 5.20260910.0-alpha themselves."
+  "packageManager": "bun@1.4.0"
 }
