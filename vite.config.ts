@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import vinext from "vinext";
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { kvDataAdapter } from "@vinext/cloudflare/cache/kv-data-adapter";
 
 export default defineConfig({
   resolve: {
@@ -10,7 +11,7 @@ export default defineConfig({
     include: ["react", "react-dom"],
   },
   plugins: [
-    vinext(),
+    vinext({ cache: { data: kvDataAdapter() } }),
     cloudflare({
       viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
     }),

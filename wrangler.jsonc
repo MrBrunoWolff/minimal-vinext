@@ -6,6 +6,12 @@
   // For image optimization, swap this for a custom worker/index.ts
   // See: https://github.com/cloudflare/vinext/blob/main/examples/app-router-cloudflare/worker/index.ts
   "main": "vinext/server/app-router-entry",
+  "kv_namespaces": [
+    {
+      "binding": "VINEXT_KV_CACHE",
+      "id": "bfc0fab6bb7647b5952f7807ad7f3aed",
+    },
+  ],
   "assets": {
     "not_found_handling": "none",
   },

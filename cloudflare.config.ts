@@ -1,4 +1,4 @@
-import { defineConfig } from "cf/config";
+import { bindings, defineConfig } from "cf/config";
 
 export default defineConfig({
 	worker: {
@@ -10,6 +10,9 @@ export default defineConfig({
 		entrypoint: "vinext/server/app-router-entry",
 		assets: {
 			notFoundHandling: "none",
+		},
+		env: {
+			VINEXT_KV_CACHE: bindings.kv(),
 		},
 	},
 });
