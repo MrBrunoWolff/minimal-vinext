@@ -29,6 +29,12 @@ bun run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+Miniflare's Undici dependency is overridden to `7.29.1` to fix
+[GHSA-rfgv-xxqx-mfg5](https://github.com/advisories/GHSA-rfgv-xxqx-mfg5) and
+[GHSA-w293-vg96-wgc3](https://github.com/advisories/GHSA-w293-vg96-wgc3).
+This stays on Undici 7 without raising its Node.js runtime requirement; remove the
+override once Miniflare requires a patched version.
+
 ## Scripts
 
 | Command             | Description                               |

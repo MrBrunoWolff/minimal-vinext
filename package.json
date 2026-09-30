@@ -64,6 +64,9 @@
     "vite": "8.3.1",
     "wrangler": "4.142.0"
   },
+  "overrides": {
+    "miniflare>undici": "7.29.1"
+  },
   "engines": {
     "bun": ">=1.0.0"
   },
