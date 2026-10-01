@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "web-perf": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-perf/SKILL.md"
+    },
+    "wf-web-lighthouse": {
+      "source": "MrBrunoWolff/the-skills",
+      "sourceType": "github",
+      "skillPath": "skills/wf-web-lighthouse/SKILL.md"
+    }
+  }
+}

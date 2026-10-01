@@ -6,7 +6,7 @@ A minimal [vinext](https://github.com/cloudflare/vinext) starter kit using the A
 
 - **vinext** - Next.js API surface reimplemented on Vite
 - **App Router** - File-system routing with React Server Components
-- **Cloudflare Workers** - Native deployment target via `vinext deploy`
+- **Cloudflare Workers** - Native deployment target via `bun run deploy`
 - **TypeScript** - Strict mode, bundler resolution
 - **React 19** - With RSC and client component support
 - **Bun** - Fast JavaScript runtime and package manager
@@ -49,6 +49,10 @@ override once Miniflare requires a patched version.
 | `bun run fmt:check` | Check formatting                          |
 | `bun run check`     | Run lint + format check                   |
 
+`dev` and `build` use Vite with the vinext plugin. After `bun run build`,
+`bun run start` previews the built Worker locally with its Cloudflare bindings.
+`deploy` builds and uploads Cloudflare Build Output using `cf deploy --prebuilt`.
+
 ## Project Structure
 
 ```
@@ -60,7 +64,7 @@ minimal-vinext/
 │       └── counter.tsx     # Counter example (client component)
 ├── public/                 # Static assets
 ├── vite.config.ts          # Vite + vinext + Cloudflare plugin
-├── wrangler.jsonc          # Cloudflare Workers configuration
+├── cloudflare.config.ts    # Cloudflare Workers configuration
 ├── tsconfig.json           # TypeScript configuration
 └── package.json
 ```
@@ -69,13 +73,13 @@ minimal-vinext/
 
 ```bash
 # Authenticate with Cloudflare (first time only)
-bunx wrangler login
+bunx cf auth login
 
 # Deploy
 bun run deploy
 ```
 
-Update the `name` field in `wrangler.jsonc` to set your Worker's name.
+Update the `worker.name` field in `cloudflare.config.ts` to set your Worker's name.
 
 ## Cloudflare Bindings
 
@@ -90,7 +94,7 @@ export default async function Page() {
 }
 ```
 
-Define bindings in `wrangler.jsonc` and run `bunx wrangler types` for TypeScript types.
+Define bindings in `cloudflare.config.ts`; dev and build generate Cloudflare types.
 
 ## Links
 
@@ -103,3 +107,5 @@ Define bindings in `wrangler.jsonc` and run `bunx wrangler types` for TypeScript
 ## License
 
 MIT
+
+Browser audit setup: [Lighthouse and Chrome DevTools MCP](docs/agent/browser-performance.md).
