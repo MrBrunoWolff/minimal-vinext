@@ -1,5 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignoreDependencies": ["wrangler"],
   "entry": [
     "app/**/page.{ts,tsx,js,jsx}",
     "app/**/layout.{ts,tsx,js,jsx}",
