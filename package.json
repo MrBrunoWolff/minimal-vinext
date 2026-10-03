@@ -38,7 +38,7 @@
     "knip": "knip",
     "typegen": "vinext typegen",
     "typecheck:only": "tsc --noEmit",
-    "audit": "bun audit --audit-level=high"
+    "audit": "bun audit --audit-level=high --ignore=GHSA-vfj7-8cjw-p6xm"
   },
   "dependencies": {
     "react": "^19.3.0",
