@@ -1,111 +1,104 @@
 # Minimal vinext
 
-A minimal [vinext](https://github.com/cloudflare/vinext) starter kit using the App Router, TypeScript, and Cloudflare Workers.
+A minimal [vinext](https://github.com/cloudflare/vinext) starter (the Next.js App Router API on Vite) with React 19, TypeScript and Cloudflare Workers, built with Bun.
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+
+**Live demo:** https://minimal-vinext.mr-brunowolff.workers.dev
 
 ## Features
 
-- **vinext** - Next.js API surface reimplemented on Vite
-- **App Router** - File-system routing with React Server Components
-- **Cloudflare Workers** - Native deployment target via `bun run deploy`
-- **TypeScript** - Strict mode, bundler resolution
-- **React 19** - With RSC and client component support
-- **Bun** - Fast JavaScript runtime and package manager
-- **Oxlint** - Lightning-fast linting (50-100x faster than ESLint)
-- **Oxfmt** - Ultra-fast formatting (30x faster than Prettier)
+- vinext App Router with React Server Components and a client component example
+- Cloudflare Workers target via `@cloudflare/vite-plugin`, deployed with the `cf` CLI
+- vinext data cache backed by Workers KV (`VINEXT_KV_CACHE`)
+- Next.js 16 `cacheComponents` and `partialPrefetching` enabled in `next.config.ts`
+- Strict TypeScript, with Worker binding types generated from `cloudflare.config.ts`
+- Oxlint, Oxfmt, Knip and React Doctor for code quality
+- GitHub Actions CI running checks, build and `bun audit`
+- Bun installs refuse packages published less than 3 days ago (`bunfig.toml`)
 
-## Quick Start
+## Quick start
 
-```bash
-# Clone
-git clone https://github.com/MrBrunoWolff/minimal-vinext.git my-app
-cd my-app
+### Clone
 
-# Install
+```sh
+git clone https://github.com/MrBrunoWolff/minimal-vinext.git
+cd minimal-vinext
 bun install
-
-# Start development server
 bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-Miniflare's Undici dependency is overridden to `7.29.1` to fix
-[GHSA-rfgv-xxqx-mfg5](https://github.com/advisories/GHSA-rfgv-xxqx-mfg5) and
-[GHSA-w293-vg96-wgc3](https://github.com/advisories/GHSA-w293-vg96-wgc3).
-This stays on Undici 7 without raising its Node.js runtime requirement; remove the
-override once Miniflare requires a patched version.
-
 ## Scripts
 
-| Command             | Description                               |
-| ------------------- | ----------------------------------------- |
-| `bun run dev`       | Start development server with HMR         |
-| `bun run build`     | Production build                          |
-| `bun run start`     | Start local production server for testing |
-| `bun run deploy`    | Build and deploy to Cloudflare Workers    |
-| `bun run lint`      | Lint with oxlint                          |
-| `bun run lint:fix`  | Auto-fix lint issues                      |
-| `bun run fmt`       | Format with oxfmt                         |
-| `bun run fmt:check` | Check formatting                          |
-| `bun run check`     | Run lint + format check                   |
+| Command                  | Description                                                                   |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| `bun run dev`            | Start the Vite dev server with vinext                                         |
+| `bun run build`          | Production build with Vite                                                    |
+| `bun run start`          | Preview the built Worker locally on `$PORT` (default 3000)                    |
+| `bun run deploy`         | Build, then deploy the prebuilt output with `cf deploy --prebuilt`            |
+| `bun run typecheck`      | Generate vinext types, then type-check with `tsc --noEmit`                    |
+| `bun run doctor`         | Run React Doctor on the project                                               |
+| `bun run lint`           | Lint with oxlint                                                              |
+| `bun run lint:fix`       | Lint with oxlint and apply fixes                                              |
+| `bun run fmt`            | Format all files with oxfmt                                                   |
+| `bun run fmt:check`      | Check formatting with oxfmt                                                   |
+| `bun run check`          | Generate types, then run lint, fmt:check, typecheck:only and knip in parallel |
+| `bun run clean`          | Remove `node_modules/.vite`, `.wrangler` and `dist`                           |
+| `bun run knip`           | Find unused files, exports and dependencies                                   |
+| `bun run typegen`        | Generate vinext types                                                         |
+| `bun run typecheck:only` | Type-check with `tsc --noEmit`                                                |
+| `bun run audit`          | Fail on high or critical dependency advisories                                |
 
-`dev` and `build` use Vite with the vinext plugin. After `bun run build`,
-`bun run start` previews the built Worker locally with its Cloudflare bindings.
-`deploy` builds and uploads Cloudflare Build Output using `cf deploy --prebuilt`.
-
-## Project Structure
+## Project structure
 
 ```
 minimal-vinext/
+├── .github/workflows/ci.yml  # check, build and audit on push/PR
 ├── app/
-│   ├── layout.tsx          # Root layout with metadata
-│   ├── page.tsx            # Home page (server component)
+│   ├── layout.tsx            # Root layout and metadata
+│   ├── page.tsx              # Home page (server component)
 │   └── components/
-│       └── counter.tsx     # Counter example (client component)
-├── public/                 # Static assets
-├── vite.config.ts          # Vite + vinext + Cloudflare plugin
-├── cloudflare.config.ts    # Cloudflare Workers configuration
-├── tsconfig.json           # TypeScript configuration
+│       ├── counter.tsx       # Counter (client component)
+│       └── rendered-at.tsx   # Client render timestamp
+├── docs/agent/               # Browser performance audit setup (Lighthouse, Chrome DevTools MCP)
+├── bunfig.toml               # Bun install settings
+├── cloudflare.config.ts      # Worker config and bindings
+├── knip.json
+├── next.config.ts            # Next.js options read by vinext
+├── tsconfig.json
+├── vite.config.ts            # Vite + vinext + Cloudflare plugin
+├── wrangler.jsonc            # Wrangler config (mirrors cloudflare.config.ts)
 └── package.json
 ```
 
 ## Deploy to Cloudflare Workers
 
-```bash
-# Authenticate with Cloudflare (first time only)
-bunx cf auth login
-
-# Deploy
+```sh
+bunx cf auth login   # first time only
 bun run deploy
 ```
 
-Update the `worker.name` field in `cloudflare.config.ts` to set your Worker's name.
+Set the Worker name in `worker.name` in `cloudflare.config.ts` (and `name` in `wrangler.jsonc`).
 
-## Cloudflare Bindings
+## Cloudflare bindings
 
-Access D1, KV, R2, and other bindings via `cloudflare:workers` in any server component or route handler:
+Bindings are declared under `worker.env` in `cloudflare.config.ts`; dev and build generate their types into `.cloudflare/types/`. The starter defines one KV namespace, `VINEXT_KV_CACHE`, which backs the vinext data cache (`kvDataAdapter` in `vite.config.ts`). `wrangler.jsonc` declares the same binding with its namespace id; keep the two files in sync.
 
-```ts
+Read bindings from `cloudflare:workers` in any server component or route handler:
+
+```tsx
 import { env } from "cloudflare:workers";
 
 export default async function Page() {
-  const result = await env.MY_KV.get("key");
-  return <div>{result}</div>;
+  const value = await env.VINEXT_KV_CACHE.get("key");
+  return <div>{value}</div>;
 }
 ```
 
-Define bindings in `cloudflare.config.ts`; dev and build generate Cloudflare types.
+## Dependency overrides
 
-## Links
-
-- [vinext](https://github.com/cloudflare/vinext)
-- [Bun](https://bun.sh/)
-- [Oxc (oxlint + oxfmt)](https://oxc.rs/)
-- [Cloudflare Workers](https://workers.cloudflare.com/)
-- [Vite](https://vitejs.dev/)
+`package.json` overrides Miniflare's `undici` to `7.29.1` to fix [GHSA-rfgv-xxqx-mfg5](https://github.com/advisories/GHSA-rfgv-xxqx-mfg5) and [GHSA-w293-vg96-wgc3](https://github.com/advisories/GHSA-w293-vg96-wgc3) without raising its Node.js requirement. Remove it once Miniflare depends on a patched version.
 
 ## License
 
-MIT
-
-Browser audit setup: [Lighthouse and Chrome DevTools MCP](docs/agent/browser-performance.md).
+MIT — see [LICENSE](LICENSE).
