@@ -1,15 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignoreDependencies": ["wrangler"],
   "entry": [
-    "app/**/page.{ts,tsx,js,jsx}",
-    "app/**/layout.{ts,tsx,js,jsx}",
-    "app/**/loading.{ts,tsx,js,jsx}",
-    "app/**/error.{ts,tsx,js,jsx}",
-    "app/**/not-found.{ts,tsx,js,jsx}",
-    "app/**/template.{ts,tsx,js,jsx}",
-    "app/**/default.{ts,tsx,js,jsx}",
-    "app/**/route.{ts,tsx,js,jsx}",
+    "app/**/{page,layout,loading,error,not-found,template,default,route}.{ts,tsx,js,jsx}",
     "cloudflare.config.ts"
   ]
 }
