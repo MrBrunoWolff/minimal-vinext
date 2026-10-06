@@ -4,12 +4,14 @@
     "web-perf": {
       "source": "cloudflare/skills",
       "sourceType": "github",
-      "skillPath": "skills/web-perf/SKILL.md"
+      "skillPath": "skills/web-perf/SKILL.md",
+      "computedHash": "72d0dd9706147e19bf3c1a36fdc02570f77685541d89d901a3a2f570824ba3cb"
     },
     "wf-web-lighthouse": {
       "source": "MrBrunoWolff/the-skills",
       "sourceType": "github",
-      "skillPath": "skills/wf-web-lighthouse/SKILL.md"
+      "skillPath": "skills/wf-web-lighthouse/SKILL.md",
+      "computedHash": "16ae8c03462b37dc82cfccb361bd976c571d458b61d60c6f98fe3b169599f3aa"
     }
   }
 }

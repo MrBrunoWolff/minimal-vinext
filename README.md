@@ -6,6 +6,11 @@ A minimal [vinext](https://github.com/cloudflare/vinext) starter (the Next.js Ap
 
 **Live demo:** https://minimal-vinext.mr-brunowolff.workers.dev
 
+Miniflare currently pins Sharp 0.35.4, which has a high-severity librsvg advisory.
+The scoped `miniflare>sharp` override uses the patched 0.35.5 release while
+preserving the Cloudflare preview pins and three-day release-age guard. Remove
+it when the Miniflare release requests a patched Sharp version.
+
 ## Features
 
 - vinext App Router with React Server Components and a client component example
@@ -102,3 +107,18 @@ export default async function Page() {
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+### Health scan scope
+
+React Doctor scans authored source. `.cloudflare`, `.wrangler` and `dist` are
+generated output and are excluded, as are dependencies. The production bundle
+warning on React DOM import maps was checked: serialization applies React’s
+script-tag escaping after `JSON.stringify`. Generated React property keys and
+TanStack history keys use randomness for internal bookkeeping, not credentials;
+Clerk’s reported comparison checks a verification-error reason, not a secret.
+Source security rules remain enabled.
+
+All declared runtime and development dependencies use `latest`, including
+TypeScript where present. Bun resolves eligible stable releases behind the
+three-day release-age guard; commit the refreshed lockfile and verify a frozen
+install after each update.
