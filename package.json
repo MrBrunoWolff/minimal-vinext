@@ -51,21 +51,20 @@
     "vinext": "latest"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "latest",
+    "@cloudflare/vite-plugin": "2.0.0-beta.sha-91c870c02",
     "@cloudflare/workers-types": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vinext/cloudflare": "latest",
     "@vitejs/plugin-rsc": "latest",
-    "cf": "latest",
+    "cf": "1.0.0-beta.14",
     "knip": "latest",
     "next": "latest",
     "oxfmt": "latest",
     "oxlint": "latest",
     "react-doctor": "latest",
     "typescript": "latest",
-    "vite": "latest",
-    "wrangler": "latest"
+    "vite": "latest"
   },
   "overrides": {
     "miniflare>sharp": "0.35.5",
