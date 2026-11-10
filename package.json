@@ -59,7 +59,7 @@
     "@vitejs/plugin-rsc": "latest",
     "cf": "1.0.0-beta.14",
     "knip": "latest",
-    "next": "^16.4.3",
+    "next": "^16.4.5",
     "oxfmt": "latest",
     "oxlint": "latest",
     "react-doctor": "latest",
